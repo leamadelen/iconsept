@@ -1,13 +1,5 @@
 # Project Instructions
 
-To run the project locally, follow these steps:
-
-1. Clone this repository to your local machine
-2. Navigate to the project directory (src)
-3. Install the necessary dependencies using ....
-4. Run command "dotnet run" in terminal
-5. Access the website in your web browser and start exploring it!
-
 ## Setup Instructions
 
 ### Prerequisites
