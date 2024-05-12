@@ -1,5 +1,7 @@
 # iKoncept
 
+**See the INSTRUC.md file for how to run the project locally**
+
 Welcome to this bachelors project! This repository contains the code for a website dedicated to concept translations, aimed at facilitating the translation process for various concepts across different languages and cultures.
 
 ## About the Project
@@ -22,5 +24,3 @@ Backend: The backend is developed using .NET, providing robust APIs for handling
 
 Database: Azure SQL is used to store user data, concept suggestions, and other information.
 Styling: The website's styling is done using CSS and Bootstrap for a modern and visually appealing look.
-
-**See the INSTRUC.md file for how to run the project locally**
