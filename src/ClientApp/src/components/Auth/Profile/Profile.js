@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { AuthContext } from '../AuthContext';
+import { AuthContext } from '../../../contexts/AuthContext';
 import '../../../styles/Profile.css';
 import axios from 'axios';
 

@@ -4,7 +4,7 @@ import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import DeleteTranslationButton from "../Buttons/DeleteCTButton";
 import '../../../../styles/Term.css';
-import { AuthContext } from "../../../Auth/AuthContext";
+import { AuthContext } from "../../../../contexts/AuthContext";
 
 const TranslationDetailsPhoneTable = ({
   translation,
