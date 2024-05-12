@@ -18,7 +18,7 @@
 2. Install the required dependecies.
    1. dotnet add package Microsoft.EntityFrameworkCore.SqlServer
    2. dotnet add package Microsoft.EntityFrameworkCore.Design
-3. The backend should now be running and accessible at the specified port.
+   3. dotnet add package FluentValidation
 
 ### Database Setup (Entity Framework Core)
 1. Run Entity Framework Core migrations to create/update the database schema.
