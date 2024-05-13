@@ -98,16 +98,17 @@ else
     app.UseSwaggerUI();
 
     using (var scope = app.Services.CreateScope())
-    {
-        var initializer = scope.ServiceProvider.GetRequiredService<DbContextInitializer>();
-        await initializer.SeedAsync();
+{
+    var initializer = scope.ServiceProvider.GetRequiredService<DbContextInitializer>();
+    await initializer.SeedAsync();
 
-        var algoliaService = scope.ServiceProvider.GetRequiredService<SearchServiceManager>();
-        // await algoliaService.SaveRecordsToAlgoliaAsync();
+    var algoliaService = scope.ServiceProvider.GetRequiredService<SearchServiceManager>();
 
-        var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 
-        var roles = new List<string> { "Admin", "Redaktør", "Bruker" };
+    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<User>>();
+
+    var roles = new List<string> { "Admin", "Redaktør", "Bruker" };
 
         foreach (var roleName in roles)
         {
@@ -117,14 +118,31 @@ else
             }
         }
 
-        var userManager = scope.ServiceProvider.GetRequiredService<UserManager<User>>();
-    
-        //var adminUser1 = await userManager.FindByEmailAsync("admin@gmail.com");
-        //await userManager.RemoveFromRoleAsync(adminUser1, "Bruker");
-        //await userManager.AddToRoleAsync(adminUser1, "Admin");
-        
-    }
+    var adminUser = await userManager.FindByEmailAsync("admin@admin.com");
 
+    if (adminUser == null)
+    {
+        adminUser = new User
+        {
+            UserName = "admin@admin.com",
+            Email = "admin@admin.com",
+            FirstName = "Admin",
+            LastName = "Admin",
+        };
+
+        var result = await userManager.CreateAsync(adminUser, "Admin1234!");
+
+        if (result.Succeeded)
+        {
+            // Add the admin role to the user
+            await userManager.AddToRoleAsync(adminUser, "Admin");
+        }
+        else
+        {
+            // Handle error creating the admin user
+        }
+    }
+}
 }
 
 app.UseCors();
