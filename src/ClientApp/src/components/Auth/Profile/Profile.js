@@ -8,23 +8,27 @@ const Profile = () => {
   const { profile, loading } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const handleDeleteUser = async (Id) => {
+  const handleDeleteUser = async () => {
     const confirmed = window.confirm("Er du sikker på at du vil slette brukeren din?");
     if (confirmed) {
-        try {
-            await axios.delete(`/api/profile/${Id}`, {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem('token')}`
-                }
-            });
-            localStorage.removeItem('token');
-            localStorage.removeItem('userId');
-            navigate('/');
-        } catch (error) {
-            console.error('Error deleting user:', error);
-        }
+      try {
+        console.log(profile);
+        const userId = profile.id;
+        await axios.delete(`/api/profile/${userId}`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`
+          }
+        });
+        console.log(profile.userId);
+        localStorage.removeItem('token');
+        localStorage.removeItem('id');
+        window.location.href = '/';
+      } catch (error) {
+        console.error('Error deleting user:', error);
+      }
     }
-};
+  };
+  
 
   if (loading) {
     return <div className="d-flex justify-content-center">Laster inn...</div>;

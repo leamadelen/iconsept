@@ -134,12 +134,14 @@ else
 
         if (result.Succeeded)
         {
-            // Add the admin role to the user
             await userManager.AddToRoleAsync(adminUser, "Admin");
         }
         else
         {
-            // Handle error creating the admin user
+            foreach (var error in result.Errors)
+            {
+                Console.WriteLine($"Error: {error.Description}");
+            }
         }
     }
 }
